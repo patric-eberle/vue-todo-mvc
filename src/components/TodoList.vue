@@ -15,9 +15,14 @@
       <input id="toggle-all" class="toggle-all" type="checkbox">
       <label for="toggle-all"></label>
       <ul class="todo-list">
-        <li v-for="(todo, index) in todos" :key="index" class="todo">
+        <li
+          v-for="(todo, index) in todos"
+          :key="index"
+          class="todo"
+          :class="{ completed: todo.isDone }"
+        >
           <div class="view">
-            <input class="toggle" type="checkbox">
+            <input class="toggle" type="checkbox" v-model="todo.isDone">
             <label>{{ todo.text }}</label>
             <button class="destroy" @click="removeTodo(todo)"></button>
           </div>
