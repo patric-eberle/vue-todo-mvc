@@ -16,7 +16,7 @@
       <label for="toggle-all"></label>
       <ul class="todo-list">
         <li
-          v-for="(todo, index) in todos"
+          v-for="(todo, index) in filteredItems"
           :key="index"
           class="todo"
           :class="{ completed: todo.isDone }"
@@ -29,7 +29,7 @@
         </li>
       </ul>
     </section>
-    <TodoListFooter :amountOfItems="remaining"/>
+    <TodoListFooter :amountOfItems="remaining" @filter="onFilter"/>
   </section>
 </template>
 
@@ -45,6 +45,7 @@ export default {
     return {
       title: "todos",
       newTodo: "",
+      filter: "",
       todos: [
         { text: "Learn JavaScript ES6+ goodies", isDone: true },
         { text: "Learn Vue", isDone: false },
@@ -77,6 +78,29 @@ export default {
           todo.isDone = value;
         });
       }
+    },
+
+    /**
+     * Filter items based on the current filter.
+     */
+    filteredItems: function() {
+      switch (this.filter) {
+        case "completed":
+          // Return items that are done
+          return this.todos.filter(function(todo) {
+            return todo.isDone === true;
+          });
+
+        case "active":
+          // Return all items that are not done yet
+          return this.todos.filter(function(todo) {
+            return todo.isDone === false;
+          });
+
+        default:
+          // Return all items
+          return this.todos;
+      }
     }
   },
   methods: {
@@ -107,6 +131,13 @@ export default {
     removeTodo(todo) {
       // Searches for the given todo inside the todo list and deletes it (splices out)
       this.todos.splice(this.todos.indexOf(todo), 1);
+    },
+
+    /**
+     * When the filter event is called, replace the current filter value.
+     */
+    onFilter(payload) {
+      this.filter = payload.filter;
     }
   }
 };
