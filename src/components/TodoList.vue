@@ -19,7 +19,7 @@
           <div class="view">
             <input class="toggle" type="checkbox">
             <label>{{ todo.text }}</label>
-            <button class="destroy"></button>
+            <button class="destroy" @click="removeTodo(todo)"></button>
           </div>
         </li>
       </ul>
@@ -67,6 +67,14 @@ export default {
 
       // Reset input value
       this.newTodo = "";
+    },
+
+    /**
+     * Remove the given todo.
+     */
+    removeTodo(todo) {
+      // Searches for the given todo inside the todo list and deletes it (splices out)
+      this.todos.splice(this.todos.indexOf(todo), 1);
     }
   }
 };
