@@ -2,7 +2,13 @@
   <section class="todoapp">
     <header class="header">
       <h1>{{ title }}</h1>
-      <input class="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?">
+      <input
+        class="new-todo"
+        autofocus
+        autocomplete="off"
+        placeholder="What needs to be done?"
+        v-model="newTodo"
+      >
     </header>
     <section class="main">
       <input id="toggle-all" class="toggle-all" type="checkbox">
@@ -32,6 +38,7 @@ export default {
   data() {
     return {
       title: "todos",
+      newTodo: "",
       todos: [
         { text: "Learn JavaScript ES6+ goodies", isDone: true },
         { text: "Learn Vue", isDone: false },
