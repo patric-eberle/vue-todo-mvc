@@ -9,7 +9,6 @@
         placeholder="What needs to be done?"
         v-model="newTodo"
       >
-      {{ newTodo }}
     </header>
     <section class="main">
       <input id="toggle-all" class="toggle-all" type="checkbox">
