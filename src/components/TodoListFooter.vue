@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <span class="todo-count">5 items left</span>
+    <span class="todo-count">{{ amountOfItems }} items left</span>
     <ul class="filters">
       <li>
         <a href="#/all">All</a>
@@ -18,7 +18,8 @@
 
 <script>
 export default {
-  name: "TodoListFooter"
+  name: "TodoListFooter",
+  props: ["amountOfItems"]
 };
 </script>
 

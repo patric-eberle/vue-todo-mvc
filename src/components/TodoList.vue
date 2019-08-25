@@ -29,7 +29,7 @@
         </li>
       </ul>
     </section>
-    <TodoListFooter/>
+    <TodoListFooter :amountOfItems="todos.length"/>
   </section>
 </template>
 
