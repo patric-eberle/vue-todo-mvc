@@ -29,7 +29,7 @@
         </li>
       </ul>
     </section>
-    <TodoListFooter :amountOfItems="todos.length"/>
+    <TodoListFooter :amountOfItems="remaining"/>
   </section>
 </template>
 
@@ -51,6 +51,17 @@ export default {
         { text: "Build something awesome", isDone: false }
       ]
     };
+  },
+  computed: {
+    /**
+     * Counts the amount of todos which are not done yet.
+     */
+    remaining: function() {
+      // Filters todos by their isDone state and counts the length of items that are not done yet
+      return this.todos.filter(function(todo) {
+        return todo.isDone !== true;
+      }).length;
+    }
   },
   methods: {
     /**
