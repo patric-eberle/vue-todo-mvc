@@ -12,7 +12,7 @@
       >
     </header>
     <section class="main">
-      <input id="toggle-all" class="toggle-all" type="checkbox">
+      <input id="toggle-all" class="toggle-all" type="checkbox" v-model="allDone">
       <label for="toggle-all"></label>
       <ul class="todo-list">
         <li
@@ -61,6 +61,22 @@ export default {
       return this.todos.filter(function(todo) {
         return todo.isDone !== true;
       }).length;
+    },
+
+    /**
+     * Gets/sets the isDone value of all todo items in the list.
+     */
+    allDone: {
+      // Method which is called when the current value is requested
+      get: function() {
+        return this.remaining === 0;
+      },
+      // Method which is called when the value should be changed
+      set: function(value) {
+        this.todos.forEach(function(todo) {
+          todo.isDone = value;
+        });
+      }
     }
   },
   methods: {
