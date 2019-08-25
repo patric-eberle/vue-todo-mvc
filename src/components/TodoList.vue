@@ -8,6 +8,7 @@
         autocomplete="off"
         placeholder="What needs to be done?"
         v-model="newTodo"
+        @keyup.enter="addTodo"
       >
     </header>
     <section class="main">
@@ -45,6 +46,28 @@ export default {
         { text: "Build something awesome", isDone: false }
       ]
     };
+  },
+  methods: {
+    /**
+     * Adds a new item to the list of todos with the newTodo value as it's text.
+     */
+    addTodo: function() {
+      const text = this.newTodo && this.newTodo.trim();
+
+      // Check if a todo text is available
+      if (!text) {
+        return;
+      }
+
+      // Extend todo list
+      this.todos.push({
+        text: text,
+        isDone: false
+      });
+
+      // Reset input value
+      this.newTodo = "";
+    }
   }
 };
 </script>
