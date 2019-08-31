@@ -29,7 +29,11 @@
         </li>
       </ul>
     </section>
-    <TodoListFooter :amountOfItems="remaining" @filter="onFilter"/>
+    <TodoListFooter
+      :amountOfItems="remaining"
+      @filter="onFilter"
+      @clearCompleted="onClearCompleted"
+    />
   </section>
 </template>
 
@@ -138,6 +142,16 @@ export default {
      */
     onFilter(payload) {
       this.filter = payload.filter;
+    },
+
+    /**
+     * Remove all todo entries, which are done.
+     */
+    onClearCompleted() {
+      // Filter all items, that are not done now, drop the others.
+      this.todos = this.todos.filter(function(todo) {
+        return todo.isDone === false;
+      });
     }
   }
 };

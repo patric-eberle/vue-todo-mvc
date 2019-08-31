@@ -12,7 +12,7 @@
         <a href="#" @click="filter('completed')">Completed</a>
       </li>
     </ul>
-    <button class="clear-completed">Clear completed</button>
+    <button class="clear-completed" @click="$emit('clearCompleted')">Clear completed</button>
   </footer>
 </template>
 
